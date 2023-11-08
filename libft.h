@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 17:29:00 by mvalk         #+#    #+#                 */
-/*   Updated: 2022/11/01 13:55:12 by mvalk         ########   odam.nl         */
+/*   Updated: 2023/05/01 18:18:13 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -36,7 +38,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*integer and array conversion*/
 
-int		ft_atoi(char *str);
+int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 
 /*character checks (ctype.h)*/
@@ -85,5 +87,26 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_split(char const *s, char c);
+
+/*get_next_line_utils*/
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+/**returns a line read from a file descriptor
+returns NULL when there's nothing else to read,
+or an error occured.*/
+char	*get_next_line(int fd);
+
+/*ft_printf*/
+
+int		ft_printstr(const char *str);
+int		ft_printnbr(int nbr);
+int		ft_printunsigned(unsigned int nbr);
+int		ft_print_ptr(unsigned long ptr);
+int		ft_printhex(unsigned long hex, const char hex_case);
+
+int		ft_printf(const char *format_str, ...);
 
 #endif
